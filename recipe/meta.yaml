@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install --no-deps --no-build-isolation . -vv
   number: 0
 
 requirements:
@@ -20,8 +20,9 @@ requirements:
     - python >=3.8
     - setuptools
     - setuptools-scm
+    - wheel
   run:
-    - importlib-resources >=3
+    - importlib_resources >=3
     - python >=3.8
 
 test:
@@ -35,11 +36,17 @@ test:
 about:
   home: https://github.com/asdf-format/asdf-standard
   summary: The ASDF Standard schemas
+  license_family: BSD
   license: BSD-3-Clause
   license_file: LICENSE
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/42309
+    reason: Carl Zeiss ask
   recipe-maintainers:
+    - ianaobi
+    - bradley
     - jhunkeler
     - WilliamJamieson
     - braingram
